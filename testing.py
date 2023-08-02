@@ -3,6 +3,7 @@ import pyautogui
 import time
 
 storenum = "2187"
+password = "af138722"  #changes daily
 
 a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   #finding WDIpad logo on the taskbar
 pyautogui.click(a1, a2) #clicks logo
@@ -24,18 +25,33 @@ d1, d2 = pyautogui.locateCenterOnScreen('imgs/CCcontroller.png', confidence=0.9)
 pyautogui.click(d1, d2)
 time.sleep(5)
 
-e1, e2 = pyautogui.locateCenterOnScreen('imgs/logoimg.png', confidence=0.9)  #working on clicking on first ok button even if its not there
-e1 = e1 + 597
-e2 = e2 - 11
+pyautogui.press('enter') #presses enter incase the first time logon button comes up
+
+try:
+    e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.9)   #checking if the CC is up 
+except:
+    print("CC is down")
+    exit()
+
+e2 = e2 + 15
+pyautogui.typewrite('5000') #typing in the username
+time.sleep(1)
 pyautogui.click(e1, e2)
+pyautogui.typewrite(password)  #typing in the password
+
+f1, f2 = pyautogui.locateCenterOnScreen('imgs/cancel.png', confidence=0.9)  #finding the cancel button to click on the ok button
+f2 = f2 - 25
+pyautogui.click(f1, f2)
 time.sleep(5)
 
-#try:
- #   e1, e2 = pyautogui.locateCenterOnScreen('imgs/logoimg.png', confidence=0.9)
-  #  e2 = e2 - 100
-   # e1 = e1 - 200
-    #pyautogui.click(e1, e2)
-    #f1, f2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.9)
-    #pyautogui.click(f1, f2)
-#except:
- #   print("CC is offline")
+pyautogui.write('5000', interval=.15)  #logging in on the CC
+pyautogui.press('enter')
+pyautogui.write(password, interval=.15)
+pyautogui.press('enter')
+time.sleep(3)
+
+pyautogui.typewrite('7')  #getting to the command window
+pyautogui.press('enter')
+time.sleep(1)
+pyautogui.write('adx_ipgm:dqstatus -q c:/adx_idt1/EESAFQUE.DAT', interval=.1)  #typing the command to view the queue
+pyautogui.press('enter')

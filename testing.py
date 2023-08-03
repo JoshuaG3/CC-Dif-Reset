@@ -1,6 +1,7 @@
-#pygui, opencv
+#pygui, opencv, keyboard
 import pyautogui
 import time
+import keyboard
 
 
 def WDipad_steps():
@@ -40,10 +41,11 @@ def WDipad_steps():
 
 
 def logging_into_CC():
-    pyautogui.press('enter') #presses enter incase the first time logon button comes up
+    keyboard.press_and_release('enter')
+    time.sleep(3) #presses enter incase the first time logon button comes up
 
     try:
-        e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.9)   #checking if the CC is up 
+        e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)   #checking if the CC is up 
     except:
         print("CC is down")
         exit()
@@ -78,7 +80,18 @@ def reset_dif():
 
 
 
-storenum = "2187"
-password = "af138722"  #changes daily
+
+
+    #pyautogui.typewrite('exit')  #below closing the CC
+    #time.sleep(1)
+    #pyautogui.hotkey('enter')
+    #time.sleep(1)
+    #keyboard.press_and_release("f9")
+
+
+    
+
+storenum = "68"
+password = "af027739"  #changes daily
 
 WDipad_steps()

@@ -4,7 +4,7 @@ import time
 import keyboard
 
 
-def WDipad_steps():
+def WDipad_steps(store_number):
     try:
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   #finding WDIpad logo on the taskbar
         pyautogui.click(a1, a2) #clicks logo
@@ -19,7 +19,7 @@ def WDipad_steps():
     b1 = b1 + 120
     pyautogui.click(b1, b2)
     pyautogui.press('backspace', presses=4)
-    pyautogui.typewrite(storenum)
+    pyautogui.typewrite(store_number)
     time.sleep(1)
 
     try:
@@ -67,31 +67,73 @@ def logging_into_CC():
     pyautogui.press('enter')
     time.sleep(3)
 
-    reset_dif()
+    check_dif()
 
 
 
-def reset_dif():
+def check_dif():
     pyautogui.typewrite('7')  #getting to the command window
     pyautogui.press('enter')
     time.sleep(1)
     pyautogui.write('adx_ipgm:dqstatus -q c:/adx_idt1/EESAFQUE.DAT', interval=.1)  #typing the command to view the queue
     pyautogui.press('enter')
+    while True:
+        diff_reset = input("Is the queue higher than 0? (Y, N): ")   #loop to ask the user if the CC needs to be reset
+        if diff_reset == "Y":
+            reset_dif()
+            break
+        elif diff_reset == "N":
+            dif_close()
+            break
+        else:
+            print("Not a valid input, try again...")
+
+            
+
+def reset_dif():   #function to reset the dif
+    print("Resetting the diff...")
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    pyautogui.typewrite("`b", interval=.3)
+    while True:
+        page_num = input("Enter the page number 1-10: ")
+        if page_num == "1":
+            pyautogui.click(g1, g2)
+            keyboard.press('page down')
+            keyboard.press('page down')
+            break
+        elif page_num == "2":
+            pyautogui.click(g1, g2)
+            keyboard.press('page down')
+            break
+        else:
+            print("Invalid input")
+
+    print("wergeg")
 
 
 
 
 
-    #pyautogui.typewrite('exit')  #below closing the CC
-    #time.sleep(1)
-    #pyautogui.hotkey('enter')
-    #time.sleep(1)
-    #keyboard.press_and_release("f9")
 
 
-    
 
-storenum = "68"
-password = "af027739"  #changes daily
 
-WDipad_steps()
+
+
+def dif_close():  #function to close the dif 
+    print("Closing CC...")
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
+    g2 = g2 + 25
+    pyautogui.click(g1, g2)
+    pyautogui.write("exit")
+    pyautogui.press('enter')
+    keyboard.send('f9')
+
+
+
+store_number = input("What is the store number?: ")
+password = "af056900"  #changes daily
+
+WDipad_steps(store_number)

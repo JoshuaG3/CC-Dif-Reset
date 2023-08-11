@@ -110,7 +110,7 @@ def reset_dif():   #function to reset the dif
         else:
             print("Invalid input")
 
-    print("wergeg")
+    print("werg")
 
 
 

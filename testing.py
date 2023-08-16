@@ -78,11 +78,11 @@ def check_dif():
     pyautogui.write('adx_ipgm:dqstatus -q c:/adx_idt1/EESAFQUE.DAT', interval=.1)  #typing the command to view the queue
     pyautogui.press('enter')
     while True:
-        diff_reset = input("Is the queue higher than 0? (Y, N): ")   #loop to ask the user if the CC needs to be reset
-        if diff_reset == "Y":
+        diff_reset = input("Is the queue higher than 0? (y, n): ")   #loop to ask the user if the CC needs to be reset
+        if diff_reset == "y":
             reset_dif()
             break
-        elif diff_reset == "N":
+        elif diff_reset == "n":
             dif_close()
             break
         else:
@@ -96,27 +96,71 @@ def reset_dif():   #function to reset the dif
     g2 = g2 + 25 
     pyautogui.click(g1, g2)
     pyautogui.typewrite("`b", interval=.3)
-    while True:
-        page_num = input("Enter the page number 1-10: ")
-        if page_num == "1":
-            pyautogui.click(g1, g2)
-            keyboard.press('page down')
-            keyboard.press('page down')
-            break
-        elif page_num == "2":
-            pyautogui.click(g1, g2)
-            keyboard.press('page down')
-            break
-        else:
-            print("Invalid input")
 
-    print("werg")
+    if pyautogui.locateCenterOnScreen('imgs/pagenums/page1.png'):
+        print("page 1 found")
+        keyboard.press('page down')
+        keyboard.press('page down')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page2.png'):
+        print("page 2 found")
+        keyboard.press('page down')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page3.png'):
+        print("page 3 found")
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page4.png'):
+        print("page 4 found")
+        keyboard.press('page up')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page5.png'):
+        print("page 5 found")
+        keyboard.press('page up')
+        keyboard.press('page up')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page6.png'):
+        print("page 6 found")    
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')    
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page7.png'):
+        print("page 7 found")
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page8.png'):
+        print("page 8 found")
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page9.png'):
+        print("page 9 found")
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page10.png'):
+        print("page 10 found")   
+        keyboard.press('page up')             
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+        keyboard.press('page up')
+    else:
+        print("Error finding page number: ")
+         
+        
 
 
 
 
-
-
+def dif_full_close():
+    keyboard.send('f3')
+    pyautogui.write("exit")
+    keyboard.send('enter')
+    keyboard.send('f9')
 
 
 
@@ -134,6 +178,6 @@ def dif_close():  #function to close the dif
 
 
 store_number = input("What is the store number?: ")
-password = "af056900"  #changes daily
+password = "af055840"  #changes daily
 
 WDipad_steps(store_number)

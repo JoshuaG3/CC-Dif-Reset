@@ -91,76 +91,107 @@ def check_dif():
             
 
 def reset_dif():   #function to reset the dif
-    print("Resetting the diff...")
     g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
     g2 = g2 + 25 
     pyautogui.click(g1, g2)
     pyautogui.typewrite("`b", interval=.3)
+    while True:
+        pagenum = int(input("What page number: "))   #asking user what page the CC is on to go to the correct page
+        if pagenum == 1:
+            pyautogui.click(g1, g2)
+            keyboard.press('page down')
+            keyboard.press('page down')
+            break
+        elif pagenum == 2:
+            pyautogui.click(g1, g2)
+            keyboard.press('page down')
+            break
+        elif pagenum == 3:
+            pyautogui.click(g1, g2)
+            break
+        elif pagenum == 4:
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')
+            break
+        elif pagenum == 5:
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')
+            keyboard.press('page up')
+            break
+        elif pagenum == 6:    
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')  
+            break  
+        elif pagenum == 7:
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            break
+        elif pagenum == 8:
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            break
+        elif pagenum == 9:
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            break
+        elif pagenum == 10: 
+            pyautogui.click(g1, g2)
+            keyboard.press('page up')             
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            keyboard.press('page up')
+            break
+        else:
+            print("Not valid page number")
 
-    if pyautogui.locateCenterOnScreen('imgs/pagenums/page1.png'):
-        print("page 1 found")
-        keyboard.press('page down')
-        keyboard.press('page down')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page2.png'):
-        print("page 2 found")
-        keyboard.press('page down')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page3.png'):
-        print("page 3 found")
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page4.png'):
-        print("page 4 found")
-        keyboard.press('page up')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page5.png'):
-        print("page 5 found")
-        keyboard.press('page up')
-        keyboard.press('page up')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page6.png'):
-        print("page 6 found")    
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')    
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page7.png'):
-        print("page 7 found")
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page8.png'):
-        print("page 8 found")
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page9.png'):
-        print("page 9 found")
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-    elif pyautogui.locateCenterOnScreen('imgs/pagenums/page10.png'):
-        print("page 10 found")   
-        keyboard.press('page up')             
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-        keyboard.press('page up')
-    else:
-        print("Error finding page number: ")
-         
-        
-
-
-
-
-def dif_full_close():
-    keyboard.send('f3')
-    pyautogui.write("exit")
+    time.sleep(2)   #stops the dif process
+    keyboard.send('f8') 
+    time.sleep(1)
+    pyautogui.write("y")
     keyboard.send('enter')
-    keyboard.send('f9')
+    print("Waiting 60 seconds...")   #waits 60 seconds before restarting the process
+    time.sleep(30)
+    print("30 more seconds")
+    time.sleep(20)
+    print("10 more seconds")
+    time.sleep(10)
+    keyboard.send('f7') #restarting the process
+    time.sleep(3)
+    keyboard.send('f3')
+    print("waiting 20 seconds to check queue...")
+    time.sleep(20)
+    keyboard.send('up arrow')  #checking the queue status
+    keyboard.send('enter')
+    while True:
+        dif_cleared = input("Is the queue back to 0? (y/n)")   #asking the user if the queue is back to 0%
+        if dif_cleared == "y":
+            print("closing CC")
+            dif_close()
+            break
+        elif dif_cleared == "n":
+            print("Resetting dif again")
+            reset_dif()
+            break
+        else:
+            print("Invalid input")
+
 
 
 

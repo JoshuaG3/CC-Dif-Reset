@@ -80,7 +80,7 @@ def check_dif():
     while True:
         diff_reset = input("Is the queue higher than 0? (y, n): ")   #loop to ask the user if the CC needs to be reset
         if diff_reset == "y":
-            reset_dif()
+            page_number()
             break
         elif diff_reset == "n":
             dif_close()
@@ -90,7 +90,7 @@ def check_dif():
 
             
 
-def reset_dif():   #function to reset the dif
+def page_number():   #function to reset the dif
     g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
     g2 = g2 + 25 
     pyautogui.click(g1, g2)
@@ -100,6 +100,7 @@ def reset_dif():   #function to reset the dif
         if pagenum == 1:
             pyautogui.click(g1, g2)
             keyboard.press('page down')
+            time.sleep(.5) 
             keyboard.press('page down')
             break
         elif pagenum == 2:
@@ -116,52 +117,88 @@ def reset_dif():   #function to reset the dif
         elif pagenum == 5:
             pyautogui.click(g1, g2)
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
             break
         elif pagenum == 6:    
             pyautogui.click(g1, g2)
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')  
             break  
         elif pagenum == 7:
             pyautogui.click(g1, g2)
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
             break
         elif pagenum == 8:
             pyautogui.click(g1, g2)
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
             break
         elif pagenum == 9:
             pyautogui.click(g1, g2)
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
             break
         elif pagenum == 10: 
             pyautogui.click(g1, g2)
-            keyboard.press('page up')             
+            keyboard.press('page up') 
+            time.sleep(.5)             
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
+            time.sleep(.5) 
             keyboard.press('page up')
             break
         else:
             print("Not valid page number")
 
-    time.sleep(2)   #stops the dif process
+    while True:
+        correct_page = input("Is it on the correct page?(y, n) ")   #stops the dif process
+        if correct_page == "y":
+            pyautogui.click(g1, g2)
+            reset_diff()
+            break
+        elif correct_page == "n":
+            pyautogui.click(g1, g2)
+            print("Please try again")
+            keyboard.send('f9')
+            dif_close()
+            break
+        else:
+            print("Invalid input")
+
+def reset_diff():    
     keyboard.send('f8') 
     time.sleep(1)
     pyautogui.write("y")
@@ -187,12 +224,10 @@ def reset_dif():   #function to reset the dif
             break
         elif dif_cleared == "n":
             print("Resetting dif again")
-            reset_dif()
+            page_number()
             break
         else:
             print("Invalid input")
-
-
 
 
 
@@ -205,10 +240,11 @@ def dif_close():  #function to close the dif
     pyautogui.write("exit")
     pyautogui.press('enter')
     keyboard.send('f9')
+    print("http://oppwrp01hdqww:5000/NoOffersdashboard/Home")
 
 
 
 store_number = input("What is the store number?: ")
-password = "af055840"  #changes daily
+password = "af770324"  #changes daily
 
 WDipad_steps(store_number)

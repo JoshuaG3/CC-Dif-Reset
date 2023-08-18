@@ -2,9 +2,16 @@
 import pyautogui
 import time
 import keyboard
+from tkinter import *
+from tkinter import ttk
 
 
-def WDipad_steps(store_number):
+root = Tk()
+root.title("CC Dif Reset Tool")
+
+def WDipad_steps():
+    store_number = StoreNum_Input.get()
+
     try:
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   #finding WDIpad logo on the taskbar
         pyautogui.click(a1, a2) #clicks logo
@@ -41,14 +48,16 @@ def WDipad_steps(store_number):
 
 
 def logging_into_CC():
-    keyboard.press_and_release('enter')
-    time.sleep(3) #presses enter incase the first time logon button comes up
-
-    try:
-        e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)   #checking if the CC is up 
-    except:
-        print("CC is down")
-        exit()
+    password = Password_Input.get()
+    keyboard.press_and_release('enter') #presses enter incase the first time logon button comes up
+    LookForPasswordAuth = False
+    while LookForPasswordAuth == False:
+        try:
+            e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    #checking if the CC is up 
+            time.sleep(1)
+            LookForPasswordAuth = True
+        except:
+            time.sleep(1)
 
     e2 = e2 + 15
     pyautogui.typewrite('5000') #typing in the username
@@ -72,7 +81,9 @@ def logging_into_CC():
 
 
 def check_dif():
-    pyautogui.typewrite('7')  #getting to the command window
+    time.sleep(2)
+    pyautogui.typewrite('7') 
+    time.sleep(1) #getting to the command window
     pyautogui.press('enter')
     time.sleep(1)
     pyautogui.write('adx_ipgm:dqstatus -q c:/adx_idt1/EESAFQUE.DAT', interval=.1)  #typing the command to view the queue
@@ -221,7 +232,6 @@ def reset_diff(g1, g2):
     while True:
         dif_cleared = input("Is the queue back to 0?(y/n): ")   #asking the user if the queue is back to 0%
         if dif_cleared == "y":
-            print("closing CC")
             dif_close()
             break
         elif dif_cleared == "n":
@@ -246,7 +256,17 @@ def dif_close():  #function to close the dif
 
 
 
-store_number = input("What is the store number?: ")
-password = "af770324"  #changes daily
+StoreNum_Label = Label(root, text="Store Number: ")
+StoreNum_Input = Entry(root, width=20, borderwidth=5)
+Password_Label = Label(root, text="Password: ")
+Password_Input = Entry(root, width=20, borderwidth=5)
+Start_Button = Button(root, text="Start Script", command=WDipad_steps)
 
-WDipad_steps(store_number)
+StoreNum_Label.grid(column=0, row=0)
+StoreNum_Input.grid(column=1, row=0)
+Password_Label.grid(column=0, row=1)
+Password_Input.grid(column=1, row=1)
+Start_Button.grid(column=0, row=2, columnspan=2)
+
+
+root.mainloop()

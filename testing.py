@@ -78,7 +78,7 @@ def check_dif():
     pyautogui.write('adx_ipgm:dqstatus -q c:/adx_idt1/EESAFQUE.DAT', interval=.1)  #typing the command to view the queue
     pyautogui.press('enter')
     while True:
-        diff_reset = input("Is the queue higher than 0? (y, n): ")   #loop to ask the user if the CC needs to be reset
+        diff_reset = input("Is the queue higher than 0?(y, n): ")   #loop to ask the user if the CC needs to be reset
         if diff_reset == "y":
             page_number()
             break
@@ -184,10 +184,10 @@ def page_number():   #function to reset the dif
             print("Not valid page number")
 
     while True:
-        correct_page = input("Is it on the correct page?(y, n) ")   #stops the dif process
+        correct_page = input("Is it on the correct page?(y, n): ")   #stops the dif process
         if correct_page == "y":
             pyautogui.click(g1, g2)
-            reset_diff()
+            reset_diff(g1, g2)
             break
         elif correct_page == "n":
             pyautogui.click(g1, g2)
@@ -198,7 +198,7 @@ def page_number():   #function to reset the dif
         else:
             print("Invalid input")
 
-def reset_diff():    
+def reset_diff(g1, g2):    
     keyboard.send('f8') 
     time.sleep(1)
     pyautogui.write("y")
@@ -209,15 +209,17 @@ def reset_diff():
     time.sleep(20)
     print("10 more seconds")
     time.sleep(10)
+    pyautogui.click(g1, g2)
     keyboard.send('f7') #restarting the process
     time.sleep(3)
     keyboard.send('f3')
     print("waiting 20 seconds to check queue...")
     time.sleep(20)
+    pyautogui.click(g1, g2)
     keyboard.send('up arrow')  #checking the queue status
     keyboard.send('enter')
     while True:
-        dif_cleared = input("Is the queue back to 0? (y/n)")   #asking the user if the queue is back to 0%
+        dif_cleared = input("Is the queue back to 0?(y/n): ")   #asking the user if the queue is back to 0%
         if dif_cleared == "y":
             print("closing CC")
             dif_close()

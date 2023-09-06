@@ -88,185 +88,232 @@ def check_dif():
     time.sleep(1)
     pyautogui.write('adx_ipgm:dqstatus -q c:/adx_idt1/EESAFQUE.DAT', interval=.1)  #typing the command to view the queue
     pyautogui.press('enter')
-    while True:
-        diff_reset = input("Is the queue higher than 0?(y, n): ")   #loop to ask the user if the CC needs to be reset
-        if diff_reset == "y":
-            page_number()
-            break
-        elif diff_reset == "n":
-            dif_close()
-            break
-        else:
-            print("Not a valid input, try again...")
+    message.set("Does the dif need to be reset")
 
             
 
-def page_number():   #function to reset the dif
+def page_number(): 
+    message.set("")  #function to reset the dif
     g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
     g2 = g2 + 25 
     pyautogui.click(g1, g2)
     pyautogui.typewrite("`b", interval=.3)
-    while True:
-        pagenum = int(input("What page number: "))   #asking user what page the CC is on to go to the correct page
-        if pagenum == 1:
-            pyautogui.click(g1, g2)
-            keyboard.press('page down')
-            time.sleep(.5) 
-            keyboard.press('page down')
-            break
-        elif pagenum == 2:
-            pyautogui.click(g1, g2)
-            keyboard.press('page down')
-            break
-        elif pagenum == 3:
-            pyautogui.click(g1, g2)
-            break
-        elif pagenum == 4:
-            pyautogui.click(g1, g2)
-            keyboard.press('page up')
-            break
-        elif pagenum == 5:
-            pyautogui.click(g1, g2)
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            break
-        elif pagenum == 6:    
-            pyautogui.click(g1, g2)
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')  
-            break  
-        elif pagenum == 7:
-            pyautogui.click(g1, g2)
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            break
-        elif pagenum == 8:
-            pyautogui.click(g1, g2)
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            break
-        elif pagenum == 9:
-            pyautogui.click(g1, g2)
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            break
-        elif pagenum == 10: 
-            pyautogui.click(g1, g2)
-            keyboard.press('page up') 
-            time.sleep(.5)             
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            time.sleep(.5) 
-            keyboard.press('page up')
-            break
-        else:
-            print("Not valid page number")
+    message.set("What page num?")#asking user what page the CC is on to go to the correct page
 
-    while True:
-        correct_page = input("Is it on the correct page?(y, n): ")   #stops the dif process
-        if correct_page == "y":
-            pyautogui.click(g1, g2)
-            reset_diff(g1, g2)
-            break
-        elif correct_page == "n":
-            pyautogui.click(g1, g2)
-            print("Please try again")
-            keyboard.send('f9')
-            dif_close()
-            break
-        else:
-            print("Invalid input")
 
-def reset_diff(g1, g2):    
+def num_1():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page down')
+    time.sleep(.5) 
+    keyboard.press('page down')
+    message.set("Correct page?")
+
+    
+def num_2():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page down')
+    message.set("Correct page?")
+
+        
+def num_3():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    message.set("Correct page?")
+
+        
+def num_4():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up')
+    message.set("Correct page?")
+
+        
+def num_5():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    message.set("Correct page?")
+
+        
+def num_6():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')  
+    message.set("Correct page?")
+ 
+        
+def num_7():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    message.set("Correct page?")
+
+        
+def num_8():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    message.set("Correct page?")
+
+    
+def num_9():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    message.set("Correct page?")
+
+        
+def num_10():
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
+    pyautogui.click(g1, g2)
+    keyboard.press('page up') 
+    time.sleep(.5)             
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    time.sleep(.5) 
+    keyboard.press('page up')
+    message.set("Correct page?")
+
+
+def reset_diff():  
+    message.set("Resetting the Dif")  
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
+    g2 = g2 + 25 
     keyboard.send('f8') 
     time.sleep(1)
     pyautogui.write("y")
     keyboard.send('enter')
-    print("Waiting 60 seconds...")   #waits 60 seconds before restarting the process
-    time.sleep(30)
-    print("30 more seconds")
+    message.set("waiting 30 seconds")
     time.sleep(20)
-    print("10 more seconds")
+    message.set("10 more seconds")
     time.sleep(10)
     pyautogui.click(g1, g2)
     keyboard.send('f7') #restarting the process
     time.sleep(3)
     keyboard.send('f3')
-    print("waiting 20 seconds to check queue...")
+    message.set("waiting 20 seconds to check queue...")
     time.sleep(20)
     pyautogui.click(g1, g2)
     keyboard.send('up arrow')  #checking the queue status
     keyboard.send('enter')
-    while True:
-        dif_cleared = input("Is the queue back to 0?(y/n): ")   #asking the user if the queue is back to 0%
-        if dif_cleared == "y":
-            dif_close()
-            break
-        elif dif_cleared == "n":
-            print("Resetting dif again")
-            page_number()
-            break
-        else:
-            print("Invalid input")
+    message.set("Is the queue 0?")
 
 
 
 
 def dif_close():  #function to close the dif 
-    print("Closing CC...")
+    message.set("Closing CC...")
     g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
     g2 = g2 + 25
     pyautogui.click(g1, g2)
     pyautogui.write("exit")
     pyautogui.press('enter')
     keyboard.send('f9')
-    print("http://oppwrp01hdqww:5000/NoOffersdashboard/Home")
+    message.set("")
+    message.set("http://oppwrp01hdqww:5000/NoOffersdashboard/Home")
 
 
 
 StoreNum_Label = Label(root, text="Store Number: ")
 StoreNum_Input = Entry(root, width=20, borderwidth=5)
+
 Password_Label = Label(root, text="Password: ")
 Password_Input = Entry(root, width=20, borderwidth=5)
+
 Start_Button = Button(root, text="Start Script", command=WDipad_steps)
+
+Yes_Button = Button(root,text="Yes-Reset", command=page_number)
+No_Button = Button(root, text="No-Exit", command=dif_close)
+
+Button1 = Button(root, text="  1  ", command=num_1)
+Button2 = Button(root, text="  2  ", command=num_2)
+Button3 = Button(root, text="  3  ", command=num_3)
+Button4 = Button(root, text="  4  ", command=num_4)
+Button5 = Button(root, text="  5  ", command=num_5)
+Button6 = Button(root, text="  6  ", command=num_6)
+Button7 = Button(root, text="  7  ", command=num_7)
+Button8 = Button(root, text="  8  ", command=num_8)
+Button9 = Button(root, text="  9  ", command=num_9)
+Button10 = Button(root, text="  10  ", command=num_10)
+
+Correct_page_yes = Button(root, text="Correct Page Yes", command=reset_diff)
+
+message = StringVar()
+message.set("")
+Message_label = Label(root, textvariable=message)
 
 StoreNum_Label.grid(column=0, row=0)
 StoreNum_Input.grid(column=1, row=0)
 Password_Label.grid(column=0, row=1)
 Password_Input.grid(column=1, row=1)
 Start_Button.grid(column=0, row=2, columnspan=2)
+Yes_Button.grid(column=0 , row=3)
+No_Button.grid(column=1, row=3)
+
+
+Button1.grid(column=0, row=4)
+Button2.grid(column=1, row=4)
+Button3.grid(column=2, row=4)
+Button4.grid(column=0, row=5)
+Button5.grid(column=1, row=5)
+Button6.grid(column=2, row=5)
+Button7.grid(column=0, row=6)
+Button8.grid(column=1, row=6)
+Button9.grid(column=2, row=6)
+Button10.grid(column=0, row=7)
+
+Correct_page_yes.grid(column=0, row=8, columnspan=2)
+Message_label.grid(column=0, columnspan=2, row=9)
+
 
 
 root.mainloop()

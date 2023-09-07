@@ -228,6 +228,7 @@ def reset_diff():
     message.set("Resetting the Dif")  
     g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)   #finding image on screen to make the CC window active again
     g2 = g2 + 25 
+    pyautogui.click(g1, g2)
     keyboard.send('f8') 
     time.sleep(1)
     pyautogui.write("y")
@@ -261,6 +262,18 @@ def dif_close():  #function to close the dif
     message.set("")
     message.set("http://oppwrp01hdqww:5000/NoOffersdashboard/Home")
 
+def dif_close2():  #function to close the dif 
+    message.set("Closing CC...")
+    g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
+    g2 = g2 + 25
+    pyautogui.click(g1, g2)
+    keyboard.send('f3')
+    pyautogui.write("exit")
+    pyautogui.press('enter')
+    keyboard.send('f9')
+    message.set("")
+    message.set("http://oppwrp01hdqww:5000/NoOffersdashboard/Home")
+
 
 
 StoreNum_Label = Label(root, text="Store Number: ")
@@ -272,7 +285,7 @@ Password_Input = Entry(root, width=20, borderwidth=5)
 Start_Button = Button(root, text="Start Script", command=WDipad_steps)
 
 Yes_Button = Button(root,text="Yes-Reset", command=page_number)
-No_Button = Button(root, text="No-Exit", command=dif_close)
+No_Button = Button(root, text="No-Exit", command=dif_close2)
 
 Button1 = Button(root, text="  1  ", command=num_1)
 Button2 = Button(root, text="  2  ", command=num_2)
@@ -285,6 +298,9 @@ Button8 = Button(root, text="  8  ", command=num_8)
 Button9 = Button(root, text="  9  ", command=num_9)
 Button10 = Button(root, text="  10  ", command=num_10)
 
+Close_cc = Button(root, text="Close CC", command=dif_close)
+Restart_button = Button(root, text="Restart Process", command=WDipad_steps)
+
 Correct_page_yes = Button(root, text="Correct Page Yes", command=reset_diff)
 
 message = StringVar()
@@ -295,9 +311,11 @@ StoreNum_Label.grid(column=0, row=0)
 StoreNum_Input.grid(column=1, row=0)
 Password_Label.grid(column=0, row=1)
 Password_Input.grid(column=1, row=1)
-Start_Button.grid(column=0, row=2, columnspan=2)
+Start_Button.grid(column=0, row=2, columnspan=3)
 Yes_Button.grid(column=0 , row=3)
-No_Button.grid(column=1, row=3)
+No_Button.grid(column=2, row=3)
+Close_cc.grid(column=0, row=10)
+Restart_button.grid(column=2, row=10)
 
 
 Button1.grid(column=0, row=4)
@@ -309,9 +327,9 @@ Button6.grid(column=2, row=5)
 Button7.grid(column=0, row=6)
 Button8.grid(column=1, row=6)
 Button9.grid(column=2, row=6)
-Button10.grid(column=0, row=7)
+Button10.grid(column=1, row=7)
 
-Correct_page_yes.grid(column=0, row=8, columnspan=2)
+Correct_page_yes.grid(column=0, row=8, columnspan=3)
 Message_label.grid(column=0, columnspan=2, row=9)
 
 

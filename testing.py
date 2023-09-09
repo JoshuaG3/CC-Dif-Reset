@@ -231,6 +231,7 @@ def reset_diff():
     pyautogui.click(g1, g2)
     keyboard.send('f8') 
     time.sleep(1)
+    pyautogui.click(g1, g2)
     pyautogui.write("y")
     keyboard.send('enter')
     message.set("waiting 30 seconds")
@@ -301,7 +302,7 @@ Button10 = Button(root, text="  10  ", command=num_10)
 Close_cc = Button(root, text="Close CC", command=dif_close)
 Restart_button = Button(root, text="Restart Process", command=WDipad_steps)
 
-Correct_page_yes = Button(root, text="Correct Page Yes", command=reset_diff)
+Correct_page_yes = Button(root, text="Correct Page?", command=reset_diff)
 
 message = StringVar()
 message.set("")

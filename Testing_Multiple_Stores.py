@@ -228,6 +228,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         print("10 more seconds")
         time.sleep(10)
         keyboard.send('f7') 
+        print("Store", n, "dif has been reset")
         closing_cc()
 
 

@@ -2,7 +2,7 @@ import pyautogui
 import time
 import keyboard
 
-store_number = (2)
+store_number = (2337)
 store_num_string = str(store_number)
 password = ("af757488")
 Username = ("5000")
@@ -139,9 +139,9 @@ def find_page_number():  #Finds what page it is on then changes it to page 3
     time.sleep(2)
     if pyautogui.locateOnScreen('test_images/page1.png', confidence=0.99):
         print("page 1")
-        keyboard.press('page down')
-        time.sleep(.5) 
-        keyboard.press('page down')
+        for i in range(2):  
+            keyboard.press('page down')
+            time.sleep(.5)
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page2.png', confidence=0.99):
         print("page 2")
@@ -156,69 +156,39 @@ def find_page_number():  #Finds what page it is on then changes it to page 3
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page5.png', confidence=0.99):
         print("page 5")
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
+        for i in range(2):  
+            keyboard.press('page up')
+            time.sleep(.5)
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page6.png', confidence=0.99):
         print("page 6")
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
+        for i in range(3):  
+            keyboard.press('page up')
+            time.sleep(.5)
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page7.png', confidence=0.99):
         print("page 7")
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
+        for i in range(4):  
+            keyboard.press('page up')
+            time.sleep(.5)
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page8.png', confidence=0.99):
         print("page 8")
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
+        for i in range(5):  
+            keyboard.press('page up')
+            time.sleep(.5)
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page9.png', confidence=0.99):
         print("page 9")
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
+        for i in range(6):  
+            keyboard.press('page up')
+            time.sleep(.5)
         test_page_verify()
     elif pyautogui.locateOnScreen('test_images/page10.png', confidence=0.99):
         print("page 10")
-        keyboard.press('page up') 
-        time.sleep(.5)             
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
-        time.sleep(.5) 
-        keyboard.press('page up')
+        for i in range(7):  
+            keyboard.press('page up')
+            time.sleep(.5)
         test_page_verify()
     else:
         print("None were found")
@@ -231,7 +201,7 @@ def test_page_verify():  #verifies on correct page
     if pyautogui.locateOnScreen('test_images/DifService.png', confidence=0.99):
         print("On correct page")
         time.sleep(2)
-        reset_diff()   #when ready change this to  reset_diff()
+        closing_cc()   #when ready change this to  reset_diff()
     else:
         print("NOT ON RIGHT PAGE")
 
@@ -261,10 +231,10 @@ def closing_cc():  #Logs off and closes the CC
     g1 = g1 + 482
     g2 = g2 - 48
     pyautogui.click(g1, g2)
-    time.sleep(1)
+    time.sleep(.5)
     h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
     pyautogui.click(h1, h2)
-    time.sleep(1)
+    time.sleep(.5)
     a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
     pyautogui.click(a1, a2)
 

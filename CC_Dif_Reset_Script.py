@@ -203,7 +203,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
                 time.sleep(.5)
             test_page_verify()
         else:
-            print("None were found")
+            print("Error logging onto the CC")
 
 
 
@@ -213,7 +213,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         if pyautogui.locateOnScreen('test_images/DifService.png', confidence=0.99):
             print("On correct page")
             time.sleep(2)
-            closing_cc()   #when ready change this to  reset_diff()
+            reset_diff()   #when ready change this to  reset_diff()
         else:
             print("NOT ON RIGHT PAGE")
 

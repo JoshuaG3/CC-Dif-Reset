@@ -3,7 +3,7 @@ import time
 import keyboard
 
 
-password = ("af757488")
+password = ("af098003")
 Username = ("5000")
 
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
@@ -49,7 +49,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) #clicks logo
         except:
-            print("WDipad is not opened")
+            print("WDipad is not in the taskbar")
         time.sleep(1)
 
         try:
@@ -75,7 +75,6 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         except:
             print("WDipad issue")
         pyautogui.click(d1, d2)
-        time.sleep(5)
 
         logging_into_CC() 
 
@@ -87,7 +86,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) #clicks logo
         except:
-            print("WDipad is not opened")
+            print("WDipad is not in the taskbar")
         time.sleep(1)
 
         try:
@@ -105,7 +104,6 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         except:
             print("WDipad issue")
         pyautogui.click(d1, d2)
-        time.sleep(5)
 
         logging_into_CC() 
 
@@ -113,6 +111,10 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
 
     def logging_into_CC():  #Types the username and password into both screens
+        Lookforimage = None
+        while Lookforimage == None:
+            Lookforimage = pyautogui.locateCenterOnScreen('imgs/FirstOkButton.png', confidence=.9)
+
         keyboard.press_and_release('enter') 
         LookForPasswordAuth = False
         while LookForPasswordAuth == False:
@@ -132,14 +134,20 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         f1, f2 = pyautogui.locateCenterOnScreen('imgs/cancel.png', confidence=0.9)  
         f2 = f2 - 25
         pyautogui.click(f1, f2)
-        time.sleep(3)
+        Lookforimage2 = None
+        while Lookforimage2 == None:
+            Lookforimage2 = pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
+        time.sleep(.8)
 
         pyautogui.write(Username, interval=.15)  
         pyautogui.press('enter')
         time.sleep(1)
         pyautogui.write(password, interval=.15)
         pyautogui.press('enter')
-        time.sleep(3)
+        time.sleep(.8)
+        Lookforimage3 = None
+        while Lookforimage3 == None:
+            Lookforimage3 = pyautogui.locateCenterOnScreen('imgs/MainMenu.png', confidence=0.9)
         find_page_number()
 
 
@@ -213,7 +221,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         if pyautogui.locateOnScreen('test_images/DifService.png', confidence=0.99):
             print("On correct page")
             time.sleep(2)
-            reset_diff()   #when ready change this to  reset_diff()
+            closing_cc()   #for production change this to  reset_diff() for testing set to closing_cc()
         else:
             print("NOT ON RIGHT PAGE")
 
@@ -235,7 +243,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
     def closing_cc():  #Logs off and closes the CC
         print("Closing the CC")
-        time.sleep(5)
+        time.sleep(2)
         keyboard.send('f3')
         time.sleep(1)
         keyboard.send('f9')

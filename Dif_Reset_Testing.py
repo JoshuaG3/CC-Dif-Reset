@@ -3,7 +3,7 @@ import time
 import keyboard
 
 
-password = ("af098003")
+password = ("af118940")
 Username = ("5000")
 
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
@@ -124,7 +124,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
                 LookForPasswordAuth = True
             except:
                 time.sleep(1)
-
+        
         e2 = e2 + 15
         pyautogui.typewrite(Username) 
         time.sleep(1)
@@ -136,8 +136,10 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         pyautogui.click(f1, f2)
         Lookforimage2 = None
         while Lookforimage2 == None:
-            Lookforimage2 = pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
-        time.sleep(.8)
+            try:
+                Lookforimage2 = pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
+            except:     
+                time.sleep(1)
 
         pyautogui.write(Username, interval=.15)  
         pyautogui.press('enter')
@@ -148,6 +150,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         Lookforimage3 = None
         while Lookforimage3 == None:
             Lookforimage3 = pyautogui.locateCenterOnScreen('imgs/MainMenu.png', confidence=0.9)
+        print("Login was sucessful")
         find_page_number()
 
 

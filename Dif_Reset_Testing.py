@@ -6,6 +6,7 @@ import keyboard
 password = ("af145328")
 Username = ("5000")
 
+#list of all non liquor stores
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
             108, 112, 115, 121, 123, 129, 135, 138, 140, 142, 144, 151, 153, 159, 163, 166, 168, 169, 171, 174, 176, 177, 179,
             180, 182, 184, 186, 190, 191, 195, 196, 197, 198, 199, 201, 203, 210, 212, 213, 214, 226, 231, 233, 235, 236, 237,
@@ -47,16 +48,16 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
     def WDipad_steps_non_liquor():  #Opens WDIpad, enters the store num, clicks SSH and clicks CC
         try:
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
-            pyautogui.click(a1, a2) #clicks logo
+            pyautogui.click(a1, a2) 
         except:
-            exit(1)  #WDIpad was not opened on the system
+            exit(1)  
         time.sleep(1)
 
         try:
             b1, b2 = pyautogui.locateCenterOnScreen('imgs/locationnumberimg.png', confidence=0.9) 
         except:
             pyautogui.click(a1, a2)
-            exit(2)  #WDIpad would not load or could not find the location number box
+            exit(2)  
         b1 = b1 + 120
         pyautogui.click(b1, b2)
         pyautogui.press('backspace', presses=4)
@@ -74,7 +75,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             d1, d2 = pyautogui.locateCenterOnScreen('imgs/CCcontroller.png', confidence=0.9)  
         except:
-            exit(4)  #Could not find the CC button
+            exit(4)  
         pyautogui.click(d1, d2)
         time.sleep(5)
 
@@ -83,10 +84,10 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
 
 
-    def Wdipad_steps_liquor():
+    def Wdipad_steps_liquor():  #Opens the CC for liquor stores from WDIpad
         try:
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
-            pyautogui.click(a1, a2) #clicks logo
+            pyautogui.click(a1, a2) 
         except:
             exit(1)
         time.sleep(1)
@@ -104,7 +105,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             c1, c2 = pyautogui.locateCenterOnScreen('imgs/SSH.png', confidence=0.9) 
         except:
-            exit(3) #Could not find the SSH button
+            exit(3) 
         c1 = c1 - 20
         pyautogui.click(c1, c2)
         time.sleep(1)
@@ -127,7 +128,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    
         except:
-            close_cc_5()   #Timeout loading CC
+            close_cc_5()   
 
         e2 = e2 + 15
         pyautogui.typewrite(Username) 
@@ -141,7 +142,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
         except:
-            close_cc_6()  #CC did not pull up in time
+            close_cc_6()  
 
         pyautogui.write(Username, interval=.15)  
         pyautogui.press('enter')
@@ -239,18 +240,23 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         print("Store", n, "dif has been reset")
         closing_cc()
 
-    def close_cc_5():
+
+    def close_cc_5():  #Logs off and closes the CC from a certain part
         t1, t2 = pyautogui.locateCenterOnScreen('imgs/Xbutton.png', confidence=.9)
         pyautogui.click(t1, t2)
         time.sleep(1)
         u1, u2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=.9)
         pyautogui.click(u1, u2)
-        time.sleep(1)
+        time.sleep(3)
         v1, v2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=.9)
         pyautogui.click(v1, v2)
+        time.sleep(1)
+        pyautogui.click(v1, v2)
+        time.sleep(1)
         exit(5)
 
-    def close_cc_6():
+
+    def close_cc_6():  #Logs off and closes the CC from a certain part
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=.9)
         a1 = a1 + 482
         a2 = a2 - 48
@@ -259,7 +265,8 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         pyautogui.click(h1, h2)
         exit(6)
 
-    def close_cc_7():
+
+    def close_cc_7():  #Logs off and closes the CC from a certain part
         time.sleep(2)
         keyboard.send('f3')
         time.sleep(1)
@@ -279,7 +286,8 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         exit(7)
 
 
-    def close_cc_8():
+
+    def close_cc_8():  #Logs off and closes the CC from a certain part
         time.sleep(2)
         keyboard.send('f3')
         time.sleep(1)
@@ -299,7 +307,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         exit(8)
 
 
-    def closing_cc():  #Logs off and closes the CC
+    def closing_cc():  #Logs off and closes the CC from a certain part
         print("Closing the CC")
         time.sleep(5)
         keyboard.send('f3')

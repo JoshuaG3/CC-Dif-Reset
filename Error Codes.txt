@@ -1,0 +1,12 @@
+Error Codes
+----------------
+
+0 = Sucessful
+1 = WDIpad is not opened on the system
+2 = WDIpad would not load or could not find the location number box
+3 = Could not find the SSH button
+4 = Could not find the CC button
+5 = Timeout loading CC 
+6 = CC did not come up
+7 = either issue logging into the cc or getting the page number
+8 = could not verify the cc was on the correct page

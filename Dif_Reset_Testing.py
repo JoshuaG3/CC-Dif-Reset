@@ -3,7 +3,7 @@ import time
 import keyboard
 
 
-password = ("af118940")
+password = ("af145328")
 Username = ("5000")
 
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
@@ -49,13 +49,14 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) #clicks logo
         except:
-            print("WDipad is not in the taskbar")
+            exit(1)  #WDIpad was not opened on the system
         time.sleep(1)
 
         try:
             b1, b2 = pyautogui.locateCenterOnScreen('imgs/locationnumberimg.png', confidence=0.9) 
         except:
-            print("WDipad issue")
+            pyautogui.click(a1, a2)
+            exit(2)  #WDIpad would not load or could not find the location number box
         b1 = b1 + 120
         pyautogui.click(b1, b2)
         pyautogui.press('backspace', presses=4)
@@ -65,7 +66,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             c1, c2 = pyautogui.locateCenterOnScreen('imgs/SSH.png', confidence=0.9) 
         except:
-            print("WDipad issue")
+            exit(3) #Could not find the SSH button
         c1 = c1 - 20
         pyautogui.click(c1, c2)
         time.sleep(1)
@@ -73,8 +74,9 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             d1, d2 = pyautogui.locateCenterOnScreen('imgs/CCcontroller.png', confidence=0.9)  
         except:
-            print("WDipad issue")
+            exit(4)  #Could not find the CC button
         pyautogui.click(d1, d2)
+        time.sleep(5)
 
         logging_into_CC() 
 
@@ -86,13 +88,13 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) #clicks logo
         except:
-            print("WDipad is not in the taskbar")
+            exit(1)
         time.sleep(1)
 
         try:
             b1, b2 = pyautogui.locateCenterOnScreen('imgs/locationnumberimg.png', confidence=0.9) 
         except:
-            print("WDipad issue")
+            exit(2)
         b1 = b1 + 120
         pyautogui.click(b1, b2)
         pyautogui.press('backspace', presses=4)
@@ -100,10 +102,19 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(1)
 
         try:
+            c1, c2 = pyautogui.locateCenterOnScreen('imgs/SSH.png', confidence=0.9) 
+        except:
+            exit(3) #Could not find the SSH button
+        c1 = c1 - 20
+        pyautogui.click(c1, c2)
+        time.sleep(1)
+
+        try:
             d1, d2 = pyautogui.locateCenterOnScreen('imgs/CCcontrollerLiquor.png', confidence=0.9)  
         except:
-            print("WDipad issue")
+            exit(4)
         pyautogui.click(d1, d2)
+        time.sleep(5)
 
         logging_into_CC() 
 
@@ -111,46 +122,33 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
 
     def logging_into_CC():  #Types the username and password into both screens
-        Lookforimage = None
-        while Lookforimage == None:
-            Lookforimage = pyautogui.locateCenterOnScreen('imgs/FirstOkButton.png', confidence=.9)
-
         keyboard.press_and_release('enter') 
-        LookForPasswordAuth = False
-        while LookForPasswordAuth == False:
-            try:
-                e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    
-                time.sleep(1)
-                LookForPasswordAuth = True
-            except:
-                time.sleep(1)
-        
+        time.sleep(6)
+        try:
+            e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    
+        except:
+            close_cc_5()   #Timeout loading CC
+
         e2 = e2 + 15
         pyautogui.typewrite(Username) 
         time.sleep(1)
         pyautogui.click(e1, e2)
         pyautogui.typewrite(password)  
-
         f1, f2 = pyautogui.locateCenterOnScreen('imgs/cancel.png', confidence=0.9)  
         f2 = f2 - 25
         pyautogui.click(f1, f2)
-        Lookforimage2 = None
-        while Lookforimage2 == None:
-            try:
-                Lookforimage2 = pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
-            except:     
-                time.sleep(1)
+        time.sleep(7)
+        try:
+            pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
+        except:
+            close_cc_6()  #CC did not pull up in time
 
         pyautogui.write(Username, interval=.15)  
         pyautogui.press('enter')
         time.sleep(1)
         pyautogui.write(password, interval=.15)
         pyautogui.press('enter')
-        time.sleep(.8)
-        Lookforimage3 = None
-        while Lookforimage3 == None:
-            Lookforimage3 = pyautogui.locateCenterOnScreen('imgs/MainMenu.png', confidence=0.9)
-        print("Login was sucessful")
+        time.sleep(3)
         find_page_number()
 
 
@@ -160,73 +158,74 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
     def find_page_number():  #Finds what page it is on then changes it to page 3
         pyautogui.typewrite("`b", interval=.5)
         time.sleep(2)
-        if pyautogui.locateOnScreen('test_images/page1.png', confidence=0.99):
+        if pyautogui.locateOnScreen('imgs/page1.png', confidence=0.99):
             print("page 1")
             for i in range(2):  
                 keyboard.press('page down')
                 time.sleep(.5)
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page2.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page2.png', confidence=0.99):
             print("page 2")
             keyboard.press('page down')
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page3.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page3.png', confidence=0.99):
             print("page 3")
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page4.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page4.png', confidence=0.99):
             print("page 4")
             keyboard.press('page up')
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page5.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page5.png', confidence=0.99):
             print("page 5")
             for i in range(2):  
                 keyboard.press('page up')
                 time.sleep(.5)
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page6.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page6.png', confidence=0.99):
             print("page 6")
             for i in range(3):  
                 keyboard.press('page up')
                 time.sleep(.5)
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page7.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page7.png', confidence=0.99):
             print("page 7")
             for i in range(4):  
                 keyboard.press('page up')
                 time.sleep(.5)
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page8.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page8.png', confidence=0.99):
             print("page 8")
             for i in range(5):  
                 keyboard.press('page up')
                 time.sleep(.5)
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page9.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page9.png', confidence=0.99):
             print("page 9")
             for i in range(6):  
                 keyboard.press('page up')
                 time.sleep(.5)
             test_page_verify()
-        elif pyautogui.locateOnScreen('test_images/page10.png', confidence=0.99):
+        elif pyautogui.locateOnScreen('imgs/page10.png', confidence=0.99):
             print("page 10")
             for i in range(7):  
                 keyboard.press('page up')
                 time.sleep(.5)
             test_page_verify()
         else:
-            print("Error logging onto the CC")
+            close_cc_7()  
+
 
 
 
 
     def test_page_verify():  #verifies on correct page
         time.sleep(2)
-        if pyautogui.locateOnScreen('test_images/DifService.png', confidence=0.99):
+        if pyautogui.locateOnScreen('imgs/DifService.png', confidence=0.99):
             print("On correct page")
             time.sleep(2)
-            closing_cc()   #for production change this to  reset_diff() for testing set to closing_cc()
+            closing_cc()   #when ready change this to  reset_diff()
         else:
-            print("NOT ON RIGHT PAGE")
+            close_cc_8()  
 
 
     def reset_diff():  #Resets the dif, waits then restarts it
@@ -235,17 +234,32 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         pyautogui.write("y")
         keyboard.send('enter')
         print("waiting 30 seconds")
-        time.sleep(20)
-        print("10 more seconds")
-        time.sleep(10)
+        time.sleep(30)
         keyboard.send('f7') 
         print("Store", n, "dif has been reset")
         closing_cc()
 
+    def close_cc_5():
+        t1, t2 = pyautogui.locateCenterOnScreen('imgs/Xbutton.png', confidence=.9)
+        pyautogui.click(t1, t2)
+        time.sleep(1)
+        u1, u2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=.9)
+        pyautogui.click(u1, u2)
+        time.sleep(1)
+        v1, v2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=.9)
+        pyautogui.click(v1, v2)
+        exit(5)
 
+    def close_cc_6():
+        a1, a2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=.9)
+        a1 = a1 + 482
+        a2 = a2 - 48
+        pyautogui.click(a1, a2)
+        h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
+        pyautogui.click(h1, h2)
+        exit(6)
 
-    def closing_cc():  #Logs off and closes the CC
-        print("Closing the CC")
+    def close_cc_7():
         time.sleep(2)
         keyboard.send('f3')
         time.sleep(1)
@@ -262,6 +276,48 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
         time.sleep(3)
+        exit(7)
+
+
+    def close_cc_8():
+        time.sleep(2)
+        keyboard.send('f3')
+        time.sleep(1)
+        keyboard.send('f9')
+        time.sleep(2)
+        g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
+        g1 = g1 + 482
+        g2 = g2 - 48
+        pyautogui.click(g1, g2)
+        time.sleep(.5)
+        h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
+        pyautogui.click(h1, h2)
+        time.sleep(.5)
+        a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
+        pyautogui.click(a1, a2)
+        time.sleep(3)
+        exit(8)
+
+
+    def closing_cc():  #Logs off and closes the CC
+        print("Closing the CC")
+        time.sleep(5)
+        keyboard.send('f3')
+        time.sleep(1)
+        keyboard.send('f9')
+        time.sleep(2)
+        g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
+        g1 = g1 + 482
+        g2 = g2 - 48
+        pyautogui.click(g1, g2)
+        time.sleep(.5)
+        h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
+        pyautogui.click(h1, h2)
+        time.sleep(.5)
+        a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
+        pyautogui.click(a1, a2)
+        time.sleep(3)
+        exit(0)
 
 
 

@@ -123,7 +123,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
     def logging_into_CC():  #Types the username and password into both screens
         keyboard.press_and_release('enter') 
-        time.sleep(6)
+        time.sleep(5)
         try:
             e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    
         except:
@@ -317,7 +317,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
         time.sleep(3)
-        exit(0)
+        
 
 
 

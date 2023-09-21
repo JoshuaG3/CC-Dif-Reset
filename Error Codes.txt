@@ -10,3 +10,9 @@ Error Codes
 6 = CC did not come up
 7 = either issue logging into the cc or getting the page number
 8 = could not verify the cc was on the correct page
+
+
+
+pip install pyautogui
+pip install opencv-python
+pip install keyboard

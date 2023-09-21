@@ -123,22 +123,25 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
     def logging_into_CC():  #Types the username and password into both screens
         keyboard.press_and_release('enter') 
-        time.sleep(6)
+        time.sleep(5)
         try:
             e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    
         except:
-            exit(5)   #create close function from this point
+            close_cc_5()   #Timeout loading CC
 
         e2 = e2 + 15
         pyautogui.typewrite(Username) 
         time.sleep(1)
         pyautogui.click(e1, e2)
         pyautogui.typewrite(password)  
-
         f1, f2 = pyautogui.locateCenterOnScreen('imgs/cancel.png', confidence=0.9)  
         f2 = f2 - 25
         pyautogui.click(f1, f2)
-        time.sleep(3)
+        time.sleep(7)
+        try:
+            pyautogui.locateCenterOnScreen('imgs/OpID.png', confidence=.9)
+        except:
+            close_cc_6()  #CC did not pull up in time
 
         pyautogui.write(Username, interval=.15)  
         pyautogui.press('enter')
@@ -209,7 +212,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
                 time.sleep(.5)
             test_page_verify()
         else:
-            print("Error logging onto the CC")
+            close_cc_7()  
 
 
 
@@ -222,7 +225,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             time.sleep(2)
             closing_cc()   #when ready change this to  reset_diff()
         else:
-            print("NOT ON RIGHT PAGE")
+            close_cc_8()  
 
 
     def reset_diff():  #Resets the dif, waits then restarts it
@@ -231,13 +234,69 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         pyautogui.write("y")
         keyboard.send('enter')
         print("waiting 30 seconds")
-        time.sleep(20)
-        print("10 more seconds")
-        time.sleep(10)
+        time.sleep(30)
         keyboard.send('f7') 
         print("Store", n, "dif has been reset")
         closing_cc()
 
+    def close_cc_5():
+        t1, t2 = pyautogui.locateCenterOnScreen('imgs/Xbutton.png', confidence=.9)
+        pyautogui.click(t1, t2)
+        time.sleep(1)
+        u1, u2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=.9)
+        pyautogui.click(u1, u2)
+        time.sleep(1)
+        v1, v2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=.9)
+        pyautogui.click(v1, v2)
+        exit(5)
+
+    def close_cc_6():
+        a1, a2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=.9)
+        a1 = a1 + 482
+        a2 = a2 - 48
+        pyautogui.click(a1, a2)
+        h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
+        pyautogui.click(h1, h2)
+        exit(6)
+
+    def close_cc_7():
+        time.sleep(2)
+        keyboard.send('f3')
+        time.sleep(1)
+        keyboard.send('f9')
+        time.sleep(2)
+        g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
+        g1 = g1 + 482
+        g2 = g2 - 48
+        pyautogui.click(g1, g2)
+        time.sleep(.5)
+        h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
+        pyautogui.click(h1, h2)
+        time.sleep(.5)
+        a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
+        pyautogui.click(a1, a2)
+        time.sleep(3)
+        exit(7)
+
+
+    def close_cc_8():
+        time.sleep(2)
+        keyboard.send('f3')
+        time.sleep(1)
+        keyboard.send('f9')
+        time.sleep(2)
+        g1, g2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=0.9)
+        g1 = g1 + 482
+        g2 = g2 - 48
+        pyautogui.click(g1, g2)
+        time.sleep(.5)
+        h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
+        pyautogui.click(h1, h2)
+        time.sleep(.5)
+        a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
+        pyautogui.click(a1, a2)
+        time.sleep(3)
+        exit(8)
 
 
     def closing_cc():  #Logs off and closes the CC
@@ -258,7 +317,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
         time.sleep(3)
-        exit()
+        
 
 
 

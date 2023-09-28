@@ -3,7 +3,7 @@ import time
 import keyboard
 
 
-password = ("af145328")
+
 Username = ("5000")
 
 #list of all non liquor stores
@@ -32,6 +32,7 @@ stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70,
 
 
 Stores_Input = input("Enter each store number seperated by commas ex(2,18,121): ")  #getting string from user
+password = input("Enter the daily password: ")
 
 print("String inputed: ", Stores_Input)  #printing what was entered 
 Store_Input_List_String = Stores_Input.split(",")  #spliting the string that was entered into a list of string numbers

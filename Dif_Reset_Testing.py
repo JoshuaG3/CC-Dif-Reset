@@ -3,7 +3,6 @@ import time
 import keyboard
 
 
-
 Username = ("5000")
 
 #list of all non liquor stores
@@ -225,7 +224,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         if pyautogui.locateOnScreen('imgs/DifService.png', confidence=0.99):
             print("On correct page")
             time.sleep(2)
-            closing_cc()   #when ready change this to  reset_diff()
+            reset_diff()   #when ready change this to  reset_diff()
         else:
             close_cc_8()  
 

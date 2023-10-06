@@ -1,11 +1,12 @@
 import pyautogui
 import time
 import keyboard
+import os
 
-password = ("af050040")
+
 Username = ("5000")
+ 
 
-#list of all non liquor stores
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
             108, 112, 115, 121, 123, 129, 135, 138, 140, 142, 144, 151, 153, 159, 163, 166, 168, 169, 171, 174, 176, 177, 179,
             180, 182, 184, 186, 190, 191, 195, 196, 197, 198, 199, 201, 203, 210, 212, 213, 214, 226, 231, 233, 235, 236, 237,
@@ -19,7 +20,7 @@ stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70,
             671, 672, 681, 683, 684, 687, 697, 698, 701, 702, 705, 708, 710, 711, 713, 720, 721, 726, 728, 729, 736, 737, 741, 
             743, 745, 750, 751, 757, 761, 767, 768, 773, 777, 1329, 1333, 1404, 1405, 1411, 1412, 1426, 1430, 1432, 1439, 1440,
             1443, 1444, 1448, 1449, 1461, 1463, 1472, 1478, 1479, 1489, 1500, 1501, 1502, 1504, 1511, 1513, 1537, 1576, 1577, 
-            1581, 1583, 1588, 1590, 1601, 1616, 1617, 1627, 1630, 1631, 1639, 1654, 1655, 1665, 1661, 1662, 1667, 1671, 
+            1581, 1583, 1588, 1590, 1601, 1616, 1617, 1627, 1630, 1631, 1639, 1654, 1655, 1661, 1662, 1667, 1671, 
             1682, 1688, 1689, 1690, 1692, 1694, 1697, 1710, 1711, 1712, 1715, 1716, 1717, 2187, 2203, 2206, 2207, 2210, 2215, 
             2219, 2220, 2223, 2225, 2229, 2230, 2234, 2237, 2238, 2244, 2246, 2247, 2249, 2252, 2258, 2261, 2263, 2266, 2269, 
             2271, 2273, 2274, 2278, 2288, 2304, 2306, 2307, 2309, 2311, 2313, 2315, 2318, 2320, 2325, 2326, 2327, 2328, 2329, 
@@ -31,6 +32,7 @@ stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70,
 
 
 Stores_Input = input("Enter each store number seperated by commas ex(2,18,121): ")  #getting string from user
+password = input("Enter the daily password: ")
 
 print("String inputed: ", Stores_Input)  #printing what was entered 
 Store_Input_List_String = Stores_Input.split(",")  #spliting the string that was entered into a list of string numbers
@@ -45,6 +47,9 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
 
     def WDipad_steps_non_liquor():  #Opens WDIpad, enters the store num, clicks SSH and clicks CC
+
+        os.chdir(r"C:\Users\gouldj\Desktop\Programming Projects\CC automation") #changing the directory to where the images are located
+
         try:
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) 
@@ -223,7 +228,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         if pyautogui.locateOnScreen('imgs/DifService.png', confidence=0.99):
             print("On correct page")
             time.sleep(2)
-            reset_diff()   #when ready change this to  reset_diff()
+            closing_cc()   #when ready change this to  reset_diff()
         else:
             close_cc_8()  
 

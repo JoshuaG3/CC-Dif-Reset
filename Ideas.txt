@@ -1,0 +1,6 @@
+Make seperate program to run twice daily to get the password from the website 
+save the password encrypted into a file
+
+have the main script go into that file
+get the password
+and un encrypt it to use in the script

@@ -2,9 +2,27 @@ import pyautogui
 import time
 import keyboard
 import os
+from cryptography.fernet import Fernet
 
 
 Username = ("5000")
+
+with open('encryptedPWD.txt') as f:
+    encpwd = ''.join(f.readlines())
+    encpwdbyt = bytes(encpwd, 'utf-8')
+f.close()
+
+# read key and convert into byte
+with open('refKey.txt') as f:
+    refKey = ''.join(f.readlines())
+    refKeybyt = bytes(refKey, 'utf-8')
+f.close()
+
+# use the key and encrypt pwd
+keytouse = Fernet(refKeybyt)
+myPass = (keytouse.decrypt(encpwdbyt))
+
+password = str(myPass, encoding="utf-8")
  
 
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
@@ -32,7 +50,7 @@ stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70,
 
 
 Stores_Input = input("Enter each store number seperated by commas ex(2,18,121): ")  #getting string from user
-password = input("Enter the daily password: ")
+#password = input("Enter the daily password: ")
 
 print("String inputed: ", Stores_Input)  #printing what was entered 
 Store_Input_List_String = Stores_Input.split(",")  #spliting the string that was entered into a list of string numbers

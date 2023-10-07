@@ -3,6 +3,7 @@ import time
 import keyboard
 import os
 from cryptography.fernet import Fernet
+import datetime
 
 
 Username = ("5000")
@@ -23,7 +24,12 @@ keytouse = Fernet(refKeybyt)
 myPass = (keytouse.decrypt(encpwdbyt))
 
 password = str(myPass, encoding="utf-8")
- 
+
+
+
+logFile = open("log.txt", "a")
+
+
 
 stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70, 77, 81, 84, 85, 86, 93, 94, 96, 103, 104, 106,
             108, 112, 115, 121, 123, 129, 135, 138, 140, 142, 144, 151, 153, 159, 163, 166, 168, 169, 171, 174, 176, 177, 179,
@@ -48,11 +54,16 @@ stores = [2, 3, 5, 7, 8, 12, 18, 19, 25, 28, 30, 32, 40, 51, 54, 60, 67, 68, 70,
             2491, 2495, 2499, 2501, 2503, 2505, 2507, 2509, 2511, 2515, 2517, 2519, 2521, 2523, 2527, 2529, 2531, 2533, 2545,
             2548, 2550, 2556, 2557, 2558, 2560, 2562, 2564, 2566, 2567, 2568, 2570, 2571, 2626, 2799]
 
-
+logFile.write("-----------------------------------------------------------------------------------"+'\n')
+logFile.seek(0, 2)
+current_time = datetime.datetime.now()
+logFile.write("Start time: " + str(current_time)+'\n')
+logFile.seek(0, 2)
 Stores_Input = input("Enter each store number seperated by commas ex(2,18,121): ")  #getting string from user
 #password = input("Enter the daily password: ")
 
-print("String inputed: ", Stores_Input)  #printing what was entered 
+logFile.write("String inputed: " +str(Stores_Input) +'\n')  #printing what was entered 
+logFile.seek(0, 2)
 Store_Input_List_String = Stores_Input.split(",")  #spliting the string that was entered into a list of string numbers
 Store_Input_List_Int = []  #creating an empty list for the ints to go into
 for item in Store_Input_List_String:  #converting the strings to ints and adding them into the list
@@ -256,14 +267,16 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(1)
         pyautogui.write("y")
         keyboard.send('enter')
-        print("waiting 45 seconds")
+        logFile.write("waiting 45 seconds"+'\n')
         time.sleep(45)
         keyboard.send('f7') 
-        print("Store", n, "dif has been reset")
+        print("Store "+ str(n)+ " dif has been reset"+'\n')
         closing_cc()
 
 
     def close_cc_5():  #Logs off and closes the CC from a certain part
+        logFile = open("log.txt", "a")
+        logFile.seek(0, 2)
         t1, t2 = pyautogui.locateCenterOnScreen('imgs/Xbutton.png', confidence=.9)
         pyautogui.click(t1, t2)
         time.sleep(1)
@@ -275,20 +288,32 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(1)
         pyautogui.click(v1, v2)
         time.sleep(1)
+        logFile.write("Exit code 5"+'\n')
+        current_time = datetime.datetime.now()
+        logFile.write("End time: " + str(current_time)+'\n')
+        logFile.close()
         exit(5)
 
 
     def close_cc_6():  #Logs off and closes the CC from a certain part
+        logFile = open("log.txt", "a")
+        logFile.seek(0, 2)
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/goback.png', confidence=.9)
         a1 = a1 + 482
         a2 = a2 - 48
         pyautogui.click(a1, a2)
         h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
         pyautogui.click(h1, h2)
+        logFile.write("Exit code 6"+'\n')
+        current_time = datetime.datetime.now()
+        logFile.write("End time: " + str(current_time)+'\n')
+        logFile.close()
         exit(6)
 
 
     def close_cc_7():  #Logs off and closes the CC from a certain part
+        logFile = open("log.txt", "a")
+        logFile.seek(0, 2)
         time.sleep(2)
         keyboard.send('f3')
         time.sleep(1)
@@ -304,12 +329,18 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(.5)
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
+        logFile.write("Exit code 7"+'\n')
+        current_time = datetime.datetime.now()
+        logFile.write("End time: " + str(current_time)+'\n')
+        logFile.close()
         time.sleep(3)
         exit(7)
 
 
 
     def close_cc_8():  #Logs off and closes the CC from a certain part
+        logFile = open("log.txt", "a")
+        logFile.seek(0, 2)
         time.sleep(2)
         keyboard.send('f3')
         time.sleep(1)
@@ -325,12 +356,17 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(.5)
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
+        logFile.write("Exit code 8"+'\n')
+        current_time = datetime.datetime.now()
+        logFile.write("End time: " + str(current_time)+'\n')
+        logFile.close()
         time.sleep(3)
         exit(8)
 
 
     def closing_cc():  #Logs off and closes the CC from a certain part
-        print("Closing the CC")
+        logFile = open("log.txt", "a")
+        logFile.seek(0, 2)
         time.sleep(5)
         keyboard.send('f3')
         time.sleep(1)
@@ -346,6 +382,10 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(.5)
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
+        logFile.write("Exit code 0 Sucess"+'\n')
+        current_time = datetime.datetime.now()
+        logFile.write("End time: " + str(current_time)+'\n')
+        logFile.close()
         time.sleep(3)
         
 

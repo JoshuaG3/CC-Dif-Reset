@@ -54,6 +54,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) 
         except:
+            print("Exit Code 1")
             exit(1)  
         time.sleep(1)
 
@@ -61,6 +62,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             b1, b2 = pyautogui.locateCenterOnScreen('imgs/locationnumberimg.png', confidence=0.9) 
         except:
             pyautogui.click(a1, a2)
+            print("Exit Code 2")
             exit(2)  
         b1 = b1 + 120
         pyautogui.click(b1, b2)
@@ -71,6 +73,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             c1, c2 = pyautogui.locateCenterOnScreen('imgs/SSH.png', confidence=0.9) 
         except:
+            print("Exit Code 3")
             exit(3) #Could not find the SSH button
         c1 = c1 - 20
         pyautogui.click(c1, c2)
@@ -79,6 +82,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             d1, d2 = pyautogui.locateCenterOnScreen('imgs/CCcontroller.png', confidence=0.9)  
         except:
+            print("Exit Code 4")
             exit(4)  
         pyautogui.click(d1, d2)
         time.sleep(5)
@@ -93,12 +97,14 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
             a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
             pyautogui.click(a1, a2) 
         except:
+            print("Exit Code 1")
             exit(1)
         time.sleep(1)
 
         try:
             b1, b2 = pyautogui.locateCenterOnScreen('imgs/locationnumberimg.png', confidence=0.9) 
         except:
+            print("Exit Code 2")
             exit(2)
         b1 = b1 + 120
         pyautogui.click(b1, b2)
@@ -109,6 +115,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             c1, c2 = pyautogui.locateCenterOnScreen('imgs/SSH.png', confidence=0.9) 
         except:
+            print("Exit Code 3")
             exit(3) 
         c1 = c1 - 20
         pyautogui.click(c1, c2)
@@ -117,6 +124,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         try:
             d1, d2 = pyautogui.locateCenterOnScreen('imgs/CCcontrollerLiquor.png', confidence=0.9)  
         except:
+            print("Exit Code 4")
             exit(4)
         pyautogui.click(d1, d2)
         time.sleep(5)
@@ -257,6 +265,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         time.sleep(1)
         pyautogui.click(v1, v2)
         time.sleep(1)
+        print("Exit Code 5")
         exit(5)
 
 
@@ -267,6 +276,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         pyautogui.click(a1, a2)
         h1, h2 = pyautogui.locateCenterOnScreen('imgs/OkButton.png', confidence=0.9)
         pyautogui.click(h1, h2)
+        print("Exit Code 5")
         exit(6)
 
 
@@ -287,6 +297,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
         time.sleep(3)
+        print("Exit Code 7")
         exit(7)
 
 
@@ -308,6 +319,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         a1, a2 = pyautogui.locateCenterOnScreen('imgs/testwdimg.png', confidence=0.9)   
         pyautogui.click(a1, a2)
         time.sleep(3)
+        print("Exit Code 8")
         exit(8)
 
 

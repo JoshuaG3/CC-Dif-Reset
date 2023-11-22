@@ -135,12 +135,16 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
     def logging_into_CC():  #Types the username and password into both screens
         keyboard.press_and_release('enter') 
-        time.sleep(5)
-        try:
-            e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.7)    
-        except:
-            close_cc_5()   
-
+        time.sleep(4)
+        e1 = None
+        e2 = None
+        timer = 0
+        while (e1 == None and e2 == None and timer<5):
+            try:
+                e1, e2 = pyautogui.locateCenterOnScreen('imgs/passwordauth.png', confidence=0.8)
+            except Exception as e:
+                time.sleep(.2)
+                timer += 1
         e2 = e2 + 15
         pyautogui.typewrite(Username) 
         time.sleep(1)
@@ -235,7 +239,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
         if pyautogui.locateOnScreen('imgs/DifService.png', confidence=0.99):
             print("On correct page")
             time.sleep(2)
-            reset_diff()   #when ready change this to  reset_diff()
+            closing_cc()   #when ready change this to  reset_diff()
         else:
             close_cc_8()  
 

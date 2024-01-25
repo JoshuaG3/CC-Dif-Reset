@@ -133,7 +133,7 @@ for n in Store_Input_List_Int:  #running the whole script for each store number 
 
 
 
-    def logging_into_CC():  #Types the username and password into both screens
+    def logging_into_CC():  #Types the username and password into both screens a
         keyboard.press_and_release('enter') 
         time.sleep(4)
         e1 = None
